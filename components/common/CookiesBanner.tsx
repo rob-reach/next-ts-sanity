@@ -1,11 +1,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// import { COOKIES_ACCEPTED_NAME } from "../utils/cookiesConsent/constants";
-// import getCookie from "../utils/cookiesConsent/getCookie";
-// import acceptCookies from "../utils/cookiesConsent/acceptCookies";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useAcceptCookies from "../lib/hooks/useAcceptCookies";
+import useAcceptCookies from "../../lib/hooks/useAcceptCookies";
 
 /**
  * Cookies consent Banner

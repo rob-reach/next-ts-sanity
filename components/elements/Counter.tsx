@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import CountContext from "../lib/context/CounterContext";
+import CountContext from "../../lib/context/CounterContext";
 
 /**
  * Counter component for demonstrating context api

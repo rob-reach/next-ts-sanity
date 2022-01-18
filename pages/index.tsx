@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Counter from "../components/Counter";
-import TestForm from "../components/TestForm";
+import Counter from "../components/elements/Counter";
+import TestForm from "../components/elements/TestForm";
 
 /**
  * Home: The landing page of the wesbite.

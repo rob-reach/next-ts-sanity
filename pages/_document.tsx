@@ -6,7 +6,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import HeadScripts from "../components/HeadScripts";
+import HeadScripts from "../components/common/HeadScripts";
 
 /**
  * _document: Overwrites the default document.js file for NextJS

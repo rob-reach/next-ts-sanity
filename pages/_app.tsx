@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/global.css";
 import type { AppProps } from "next/app";
 import { CountContextProvider } from "../lib/context/CounterContext";
-import CookiesBanner from "../components/CookiesBanner";
+import CookiesBanner from "../components/common/CookiesBanner";
 
 /**
  * Custom _app component
