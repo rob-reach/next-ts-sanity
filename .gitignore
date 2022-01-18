@@ -30,10 +30,11 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-./sanity/.env.local
-./sanity/.env.development.local
-./sanity/.env.test.local
-./sanity/.env.production.local
+/sanity/.env.local
+/sanity/.env.development.local
+/sanity/.env.development
+/sanity/.env.test.local
+/sanity/.env.production.local
 
 # vercel
 .vercel
@@ -41,4 +42,5 @@ yarn-error.log*
 # typescript
 tsconfig.tsbuildinfo
 
-./public/studio
+/public/studio
+/public/studio/*
