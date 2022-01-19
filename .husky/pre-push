@@ -39,4 +39,4 @@ npm run build ||
 )
 
 # If everything passes... Now we can commit
-echo '✅ Pre-push checks passed... have a cookie 🍪'
+echo '✅ Pre-push checks passed... have a cookie 🍪 '
