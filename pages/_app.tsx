@@ -5,6 +5,7 @@ import { CountContextProvider } from "../lib/context/CounterContext";
 import CookiesBanner from "../components/common/CookiesBanner";
 import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo.config";
+import { AnimatePresence } from "framer-motion";
 
 /**
  * Custom _app component
@@ -12,12 +13,14 @@ import SEO from "../next-seo.config";
  * @param {object} param0 _app props
  * @return {JSX.Element} The JSX code for the custom _app file.
  */
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <CountContextProvider>
       <DefaultSeo {...SEO} />
       <CookiesBanner />
-      <Component {...pageProps} />
+      <AnimatePresence exitBeforeEnter>
+        <Component key={router.route} {...pageProps} />
+      </AnimatePresence>
     </CountContextProvider>
   );
 }

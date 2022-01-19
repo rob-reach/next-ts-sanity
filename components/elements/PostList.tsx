@@ -3,6 +3,7 @@ import Link from "next/link";
 import { post } from "../../pages/blog";
 import usePagination from "../../lib/hooks/usePagination";
 import Pagination from "./Pagination";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface IPostsListProps {
   posts: post[];
@@ -17,12 +18,19 @@ export default function PostList({ posts }: IPostsListProps) {
   const { pageNumbers, currentPosts, paginate, currentPage } =
     usePagination(posts);
   return (
-    <div>
-      <ul className="grid-cols-3">
+    <>
+      <ul className="min-h-[72px]">
         {currentPosts.map((post: post) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
-          </li>
+          <AnimatePresence key={post.id} exitBeforeEnter>
+            <motion.li
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
+            </motion.li>
+          </AnimatePresence>
         ))}
       </ul>
 
@@ -31,6 +39,6 @@ export default function PostList({ posts }: IPostsListProps) {
         paginate={paginate}
         currentPage={currentPage}
       />
-    </div>
+    </>
   );
 }

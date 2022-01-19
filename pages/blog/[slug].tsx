@@ -8,6 +8,7 @@ import SEO from "../../components/common/SEO";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { urlFor } from "../../lib/sanity/sanity-img-builder";
+import { motion } from "framer-motion";
 
 interface slug {
   _type: string;
@@ -54,7 +55,12 @@ export default function Post({ post }: pageProps) {
         description={post.seo?.metaDescription}
       />
       <div className="container">
-        <h1>{post.title}</h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          {post.title}
+        </motion.h1>
         {post?.mainImage && (
           <Image
             src={urlFor(post.mainImage).width(1280).url() as string}
@@ -109,7 +115,6 @@ export async function getStaticPaths() {
   const paths = postSlugs.map((post: postSlug) => ({
     params: { slug: post.slug.current },
   }));
-  console.log(paths);
   return {
     paths,
     fallback: false, // false or 'blocking'

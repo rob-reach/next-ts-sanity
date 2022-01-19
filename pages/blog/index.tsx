@@ -3,6 +3,7 @@ import Layout from "../../components/layouts/Layout";
 import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity/sanity.server";
 import PostList from "../../components/elements/PostList";
+import { motion } from "framer-motion";
 
 export interface slug {
   _type: string;
@@ -32,7 +33,12 @@ export default function BlogIndex({ data }: pageStaticProps) {
   return (
     <Layout>
       <div className="container">
-        <h1>Blog</h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Blog
+        </motion.h1>
 
         <PostList posts={posts} />
 
