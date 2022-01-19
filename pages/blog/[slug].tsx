@@ -5,6 +5,9 @@ import Layout from "../../components/layouts/Layout";
 import { BlockContent } from "../../components/block-content/BlockContent";
 import { getClient } from "../../lib/sanity/sanity.server";
 import SEO from "../../components/common/SEO";
+import { SanityImageObject } from "@sanity/image-url/lib/types/types";
+import Image from "next/image";
+import { urlFor } from "../../lib/sanity/sanity-img-builder";
 
 interface slug {
   _type: string;
@@ -31,6 +34,7 @@ interface post {
   title: string;
   body: BlockContentProps;
   seo: seo;
+  mainImage: SanityImageObject;
 }
 
 interface pageProps {
@@ -46,12 +50,22 @@ export default function Post({ post }: pageProps) {
   return (
     <Layout>
       <SEO
-        title={post.seo.metaTitle || ""}
-        description={post.seo.metaDescription || ""}
+        title={post.seo?.metaTitle}
+        description={post.seo?.metaDescription}
       />
-      <h1>{post.title}</h1>
-      <BlockContent blocks={post.body} />
-      <pre>{JSON.stringify(post, null, 2)}</pre>
+      <div className="container">
+        <h1>{post.title}</h1>
+        {post?.mainImage && (
+          <Image
+            src={urlFor(post.mainImage).width(1280).url() as string}
+            width={1280}
+            height={300}
+            objectFit="cover"
+            layout="responsive"
+          />
+        )}
+        {post?.body && <BlockContent blocks={post?.body} />}
+      </div>
     </Layout>
   );
 }
@@ -66,6 +80,7 @@ const postQuery = groq`*[_type == 'post' && slug.current == $slug][0]{
   "id" : _id,
   title,
   body,
+  mainImage,
   seo
 }`;
 
@@ -94,7 +109,7 @@ export async function getStaticPaths() {
   const paths = postSlugs.map((post: postSlug) => ({
     params: { slug: post.slug.current },
   }));
-
+  console.log(paths);
   return {
     paths,
     fallback: false, // false or 'blocking'
