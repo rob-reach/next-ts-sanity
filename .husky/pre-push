@@ -3,8 +3,7 @@
 
 npm run build || 
 (
-    echo '🏗️ 👷 Better call Bob... your build failed. Fix your build and try pushing again
-            Are you seriously trying to write that? Make the changes required above.'
+    echo '🏗️ 👷 Better call Bob... your build failed. Fix your build and try pushing again.'
     false;
 )
 
