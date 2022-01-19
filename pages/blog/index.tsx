@@ -2,20 +2,20 @@ import React from "react";
 import Layout from "../../components/layouts/Layout";
 import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity/sanity.server";
-import Link from "next/link";
+import PostList from "../../components/elements/PostList";
 
-interface slug {
+export interface slug {
   _type: string;
   current: string;
 }
 
-interface post {
+export interface post {
   id: string;
   slug: slug;
   title: string;
 }
 
-interface pageStaticProps {
+export interface pageStaticProps {
   data: {
     posts: post[];
   };
@@ -34,13 +34,7 @@ export default function BlogIndex({ data }: pageStaticProps) {
       <div className="container">
         <h1>Blog</h1>
 
-        <ul className="list-disc">
-          {posts.map((post) => (
-            <li key={post.id}>
-              <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <PostList posts={posts} />
 
         <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
@@ -48,7 +42,7 @@ export default function BlogIndex({ data }: pageStaticProps) {
   );
 }
 
-const postsQuery = groq`*[_type == 'post' && !(_id in path('drafts.**'))]{
+const postsQuery = groq`*[_type == 'post' && !(_id in path('drafts.**'))] | order(_createdAt desc){
   'id':_id,
   title,
   slug
