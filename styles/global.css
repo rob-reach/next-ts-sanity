@@ -55,6 +55,10 @@
     @apply mb-4;
   }
 
+  ul {
+    @apply list-disc pl-5;
+  }
+
   p a,
   li a,
   h1 a,
