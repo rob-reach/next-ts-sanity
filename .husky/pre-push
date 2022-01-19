@@ -8,4 +8,4 @@ npm run build ||
     false;
 )
 
-"✅ Build successful - pushing now... oh and... have a cookie! 🍪"
+echo '✅ Build successful - pushing now... oh and... have a 🍪!'
