@@ -45,7 +45,10 @@ interface pageProps {
 export default function Post({ post }: pageProps) {
   return (
     <Layout>
-      <SEO title={post.seo.metaTitle} description={post.seo.metaDescription} />
+      <SEO
+        title={post.seo.metaTitle || ""}
+        description={post.seo.metaDescription || ""}
+      />
       <h1>{post.title}</h1>
       <BlockContent blocks={post.body} />
       <pre>{JSON.stringify(post, null, 2)}</pre>
