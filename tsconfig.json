@@ -25,5 +25,6 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "studio"],
   "types": ["@types/gtag.js"],
-  "baseUrl": "."
+  "baseUrl": ".",
+  "files": ["@types/block-content-to-react.d.ts"]
 }

@@ -1,6 +1,8 @@
+import { BlockContentProps } from "@sanity/block-content-to-react";
 import { groq } from "next-sanity";
 import React from "react";
 import Layout from "../../components/layouts/Layout";
+import { PortableText } from "../../lib/sanity/sanity";
 import { getClient } from "../../lib/sanity/sanity.server";
 
 interface slug {
@@ -21,6 +23,7 @@ interface staticPropsParams {
 interface post {
   slug: string;
   title: string;
+  body: BlockContentProps;
 }
 
 interface pageProps {
@@ -36,6 +39,7 @@ export default function Post({ post }: pageProps) {
   return (
     <Layout>
       <h1>{post.title}</h1>
+      <PortableText blocks={post.body} />
       <pre>{JSON.stringify(post, null, 2)}</pre>
     </Layout>
   );
@@ -50,6 +54,7 @@ const postsSlugsQuery = groq`*[_type == 'post' && !(_id in path('drafts.**'))]{
 const postQuery = groq`*[_type == 'post' && slug.current == $slug][0]{
   "id" : _id,
   title,
+  body
 }`;
 
 /**
