@@ -1,16 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# If everything passes... Now we can commit
-echo 'Trying to build now. 🤔🤔🤔🤔'
-
-npm run build ||
+npm run build || 
 (
-    echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌
-            Next build or sanity build failed: View the errors above to see why. 
-    '
-    false;
+    "✅ Build successful - pushing now... oh and... have a cookie! 🍪"
 )
-
-# If everything passes... Now we can commit
-echo '✅ Pre-push checks passed... have a cookie 🍪 '
