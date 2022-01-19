@@ -1,8 +1,8 @@
 import React from "react";
-import Head from "next/head";
 import Counter from "../components/elements/Counter";
 import TestForm from "../components/elements/TestForm";
 import Layout from "../components/layouts/Layout";
+import SEO from "../components/common/SEO";
 
 /**
  * Home: The landing page of the wesbite.
@@ -12,10 +12,7 @@ import Layout from "../components/layouts/Layout";
 export default function Home() {
   return (
     <Layout>
-      <Head>
-        <title>Reach Next Js Starter - Home</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO title="Home" description="This is the homepage" />
       <div className="container">
         <main>
           <h1>Home Page</h1>

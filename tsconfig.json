@@ -22,7 +22,13 @@
     "target": "es2018",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/**/*.ts",
+    "**/*.tsx",
+    "next.config.js"
+  ],
   "exclude": ["node_modules", "studio"],
   "types": ["@types/gtag.js"],
   "baseUrl": ".",
