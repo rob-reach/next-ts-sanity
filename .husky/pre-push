@@ -28,4 +28,15 @@ npm run check-types ||
 )
 
 # If everything passes... Now we can commit
-echo '✅ Pre-commit checks passed... have a cookie 🍪'
+echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
+
+npm run build ||
+(
+    echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌
+            Next build or sanity build failed: View the errors above to see why. 
+    '
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅ Pre-push checks passed... have a cookie 🍪'
