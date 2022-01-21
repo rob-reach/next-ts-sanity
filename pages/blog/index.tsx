@@ -39,10 +39,7 @@ export default function BlogIndex({ data }: pageStaticProps) {
         >
           Blog
         </motion.h1>
-
         <PostList posts={posts} />
-
-        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
     </Layout>
   );
