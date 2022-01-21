@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "../icons/MenuIcon";
 import { motion } from "framer-motion";
 import CloseIcon from "../icons/CloseIcon";
+import { useIsSm } from "../../lib/hooks/useMediaQuery";
 
 /**
  * Header component
@@ -11,33 +12,31 @@ import CloseIcon from "../icons/CloseIcon";
  * @return {JSX.Element} JSX Code for the Header Component
  */
 export default function Header() {
-  const [screenWidth, setScreenWidth] = useState(0);
+  const isSmall = useIsSm();
   const [navOpen, setNavOpen] = useState(false);
 
-  /**
-   * Function to update screen width state
-   *
-   * @return {void} void.
-   */
-  function updateScreenWidth() {
-    setScreenWidth(window.innerWidth);
-  }
-
-  useEffect(() => {
-    setScreenWidth(window.innerWidth);
-    window.addEventListener("resize", updateScreenWidth);
-    return () => window.removeEventListener("resize", updateScreenWidth);
-  }, []);
-
+  // Framer motion variants for nav animation
   const variants = {
-    initial: {
-      opacity: screenWidth >= 640 ? 1 : 0,
-      x: screenWidth >= 640 ? 0 : 100,
-    },
-    animate: {
+    mobile: {
       opacity: navOpen ? 1 : 0,
       x: navOpen ? 0 : 100,
     },
+    desktop: {
+      opacity: 1,
+      x: 0,
+      // Transition set to "easeOut" with a duration of 0 to remove desktop animation
+      transition: {
+        ease: "easeOut",
+        duration: 0,
+      },
+    },
+  };
+
+  // Setting framer motion attributes for nav.motion element
+  const attributes = {
+    variants: variants,
+    initial: false,
+    animate: isSmall ? "desktop" : "mobile",
   };
 
   return (
@@ -52,12 +51,10 @@ export default function Header() {
           {navOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
         <motion.nav
-          initial="initial"
-          animate="animate"
-          variants={variants}
+          {...attributes}
           className={`fixed top-0 left-0 right-0 h-screen w-screen bg-lynx pointer-events-none sm:visible sm:relative sm:w-auto sm:h-auto sm:bg-transparent ${
             navOpen ? "pointer-events-auto" : "pointer-events-none"
-          }`}
+          } sm:pointer-events-auto`}
         >
           <ul className="list-none pb-4 pt-24 text-center sm:p-0 sm:flex sm:space-x-4">
             <li className="text-2xl block sm:text-base">
