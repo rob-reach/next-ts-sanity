@@ -24,7 +24,7 @@ export default function CookiesBanner() {
     <AnimatePresence>
       {!acceptedCookies && router.pathname != "/privacy-cookies-policy" && (
         <motion.div
-          className="fixed flex justify-center pt-10 top-0 left-0 right-0 h-screen items-start bg-grey-300 bg-opacity-75"
+          className="fixed flex justify-center pt-10 top-0 left-0 right-0 h-screen items-start bg-grey-300 bg-opacity-75 z-50"
           initial="hidden"
           animate="visible"
           exit="exit"
