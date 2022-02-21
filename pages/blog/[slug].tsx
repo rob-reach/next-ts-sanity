@@ -1,53 +1,21 @@
-import { BlockContentProps } from "@sanity/block-content-to-react";
 import { groq } from "next-sanity";
 import React from "react";
 import Layout from "../../components/layouts/Layout";
 import { BlockContent } from "../../components/block-content/BlockContent";
 import { getClient } from "../../lib/sanity/sanity.server";
 import SEO from "../../components/common/SEO";
-import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { urlFor } from "../../lib/sanity/sanity-img-builder";
 import { motion } from "framer-motion";
-
-interface slug {
-  _type: string;
-  current: string;
-}
-
-interface postSlug {
-  slug: slug;
-}
-
-interface staticPropsParams {
-  params: {
-    slug: string;
-  };
-}
-
-interface seo {
-  metaTitle: string;
-  metaDescription: string;
-}
-
-interface post {
-  slug: string;
-  title: string;
-  body: BlockContentProps;
-  seo: seo;
-  mainImage: SanityImageObject;
-}
-
-interface pageProps {
-  post: post;
-}
+import { postSlug } from "../../@types/posts";
+import { IPostPageProps } from "../../@types/pages";
 
 /**
  * Blog post page
  *
  * @return {JSX.Element} JSX Code for the single post page
  */
-export default function Post({ post }: pageProps) {
+export default function Post({ post }: IPostPageProps) {
   return (
     <Layout>
       <SEO
@@ -74,6 +42,12 @@ export default function Post({ post }: pageProps) {
       </div>
     </Layout>
   );
+}
+
+interface staticPropsParams {
+  params: {
+    slug: string;
+  };
 }
 
 // Posts query to get slugs
