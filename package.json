@@ -1,6 +1,6 @@
 {
   "name": "next-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -27,8 +27,8 @@
     "next-sanity": "^0.4.0",
     "next-seo": "^4.28.1",
     "nodemailer": "6.7.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-gtm-module": "2.0.11",
     "react-hook-form": "7.22.4"
   },
